@@ -42,11 +42,19 @@ void list_sort(list *plist, cmp_t cmp){
 	mergeSort(list_begin(plist), list_end(plist), plist->m_size, cmp);
 }
 list_node* list_find(list *plist, check_t check){
-	for(list_node* iter = list_begin(plist);\
-	iter!= list_end(plist);iter = iter-m_next){
+	
+	list_node* iter = list_begin(plist);
+	for(;iter!= list_end(plist);iter = iter->m_next){
 		if(check(iter->m_pdata)){
 			return iter;
 		}
 	}
 	return iter;
+}
+list_node* list_begin(list *plist)
+{return plist->m_head.m_next;}
+list_node* list_end(list *plist){return &plist->m_tail;}
+void list_push(list *plist, void* pdata){
+	//always insert to the tail of list
+	list_insert(plist, list_end(plist), pdata);
 }

@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include "gc.h"
 static struct {
 	int size;
 	int capacity;

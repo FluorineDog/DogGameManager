@@ -27,12 +27,9 @@ void list_erase(list *plist, list_node* pwhere);
 void list_move(list_node* pwhich, list_node* pwhere);
 void list_clear_all(list *plist);
 
-inline list_node* list_begin(list *plist){return plist->m_head.m_next;}
-inline list_node* list_end(list *plist){return &plist->m_tail;}
-inline void list_push(list *plist, void* pdata){
-	//always insert to the tail of list
-	list_insert(plist, list_end(plist), pdata);
-}
+list_node* list_begin(list *plist);
+list_node* list_end(list *plist);
+void list_push(list *plist, void* pdata);
 
 //to sort in the standard of cmp with method of mergeSort
 void list_sort(list *plist, cmp_t cmp);
