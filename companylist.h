@@ -6,7 +6,7 @@ typedef struct companylist_item_ companylist_item;
 struct companylist_item_{
 	list m_gamelist;
 	char m_description[0x1000];
-	char m_name[0x40];
+	char m_name[MAXSIZE_NAME];
 };
 
 void companylist_init();

@@ -5,6 +5,7 @@ static list companylist;
 // no comments, since all info is implicited in the variable names.
 void companylist_init(){
 	list_init(&companylist);
+	gamelist_init_all();
 }
 void companylist_add_new_company(char* name, char* description){
 	companylist_item *pitem = smart_malloc(sizeof(companylist_item));
