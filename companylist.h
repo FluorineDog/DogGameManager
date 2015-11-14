@@ -20,4 +20,4 @@ list* companylist_get_gamelist(list_node* company_iter);
 char* companylist_get_name(list_node* company_iter);
 char* companylist_get_description(list_node* company_iter);
 list_node* companylist_begin();
-list_node* companylist_end)();
+list_node* companylist_end();
