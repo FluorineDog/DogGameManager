@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "common.h"
-//#include "list.h"
+#include "list.h"
 int main()
 {
 	bool a = true;
