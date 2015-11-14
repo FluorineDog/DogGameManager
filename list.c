@@ -1,10 +1,10 @@
 #include "list.h"
 #include "mergeSort.h"
 void list_initialize(list *plist, destructor_t destructor){
-	plist->size = 0;
+	plist->m_size = 0;
 	plist->m_head.m_next = &plist->m_tail;
 	plist->m_tail.m_prev = &plist->m_head;
-	m_destructor =  destructor;
+	plist->m_destructor =  destructor;
 }
 
 void list_insert(list *plist, list_node* pwhere, void* pdata){
@@ -12,7 +12,7 @@ void list_insert(list *plist, list_node* pwhere, void* pdata){
 	list_node *new_item = smart_malloc(sizeof(list_node));
 	new_item->m_pdata = pdata;
 	new_item->m_next = pwhere;
-	new_item->m_prev = pwhere->prev;
+	new_item->m_prev = pwhere->m_prev;
 	new_item->m_next->m_prev = new_item;
 	new_item->m_prev->m_next = new_item;
 }
@@ -21,13 +21,13 @@ void list_erase(list *plist, list_node* pwhere){
 	--plist->m_size;
 	pwhere->m_prev->m_next = pwhere->m_next;
 	pwhere->m_next->m_prev = pwhere->m_prev;
-	plist->m_destructor(pwhere->mdata);
+	plist->m_destructor(pwhere->m_pdata);
 }
 void list_move(list_node* pwhich, list_node* pwhere){
 	pwhich->m_prev->m_next = pwhich->m_next;
 	pwhich->m_next->m_prev = pwhich->m_prev;
 	pwhich->m_next = pwhere;
-	pwhich->m_prev = pwhere->prev;
+	pwhich->m_prev = pwhere->m_prev;
 	pwhich->m_next->m_prev = pwhich;
 	pwhich->m_prev->m_next = pwhich;
 }
@@ -39,7 +39,7 @@ void list_clear_all(list *plist){
 }
 //to sort in the standard of cmp with method of mergeSort
 void list_sort(list *plist, cmp_t cmp){
-	mergeSort(list_begin(plist), list_end(plist),cmp);
+	mergeSort(list_begin(plist), list_end(plist), plist->m_size, cmp);
 }
 list_node* list_find(list *plist, check_t check){
 	for(list_node* iter = list_begin(plist);\

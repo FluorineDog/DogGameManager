@@ -1,6 +1,10 @@
 #include "list.h"
-
-void mergeSort(list_node *beg, list_node *end, int size){
+static cmp_t cmp;
+void mergeSort(list_node *beg, list_node *end, int size, cmp_t compare){
+	cmp = compare;
+	mergeSort(beg, mid, size);
+}
+void mergeSortPart(list_node *beg, list_node *end, int size){
 	if(size <= 1)
 		return; 
 	list_node* mid = beg;
@@ -8,8 +12,8 @@ void mergeSort(list_node *beg, list_node *end, int size){
 		mid = mid->m_next;
 	}
 	// size/2 + (size+1)/2 = size
-	mergeSort(beg, mid, size/2);
-	mergeSort(beg, mid, (size+1)/2); 
+	mergeSortPart(beg, mid, size/2);
+	mergeSortPart(beg, mid, (size+1)/2); 
 	merge(beg, mid, end);
 }
 void merge(list_node* beg, list_node* mid, list_node* end){
