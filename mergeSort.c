@@ -3,7 +3,6 @@
 static cmp_t cmp;
 void mergeSort(list_node *beg, list_node *end, int size, cmp_t compare){
 	cmp = compare;
-	printf("size%d\n",size);
 	mergeSortPart(beg, end, size);
 }
 void mergeSortPart(list_node *beg, list_node *end, int size){
@@ -14,9 +13,16 @@ void mergeSortPart(list_node *beg, list_node *end, int size){
 		mid = mid->m_next;
 	}
 	// size/2 + (size+1)/2 = size
+	// store beg's prev in advance, which is unchangable, to get a new beg 
+	list_node* header = beg->m_prev;			
 	mergeSortPart(beg, mid, size/2);
-	mergeSortPart(mid, end, (size+1)/2); 
-	merge(beg, mid, end);
+	
+	// similiarly
+	list_node* pre_mid = mid->m_prev;			
+	mergeSortPart(mid, end, (size+1)/2);
+	
+	// restore
+	merge(header->m_next, pre_mid->m_next, end);
 }
 void merge(list_node* beg, list_node* mid, list_node* end){
 	list_node *iter1 = beg;
