@@ -6,6 +6,7 @@ struct list_node{
 	list_node *m_prev, *m_next;	
 	void *m_pdata;	//Block of data for universial usage
 }; 
+typedef constructor_t 
 
 struct list{
 	int m_size;

@@ -7,6 +7,7 @@ struct list_node{
 struct list{
 	int m_size;
 	list_node m_head, m_tail;
+	
 };
 
 void list_initialize(list *plist){
@@ -18,7 +19,11 @@ void list_insert(list *plist, void* pdata){
 	//always insert to the head of list
 	smart_malloc(sizeof())
 }
-void list_delete(list *plist, list_node* pwhere);
+void list_delete(list *plist, list_node* pwhere){
+	pwhere->m_prev->m_next = pwhere->m_next;
+	pwhere->m_next->m_prev = pwhere->m_prev;
+		
+}
 
 typedef bool (*cmp_t)(void *pdata1, void *pdata2);
 //to sort in the standard of cmp
