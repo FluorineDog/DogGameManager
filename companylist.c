@@ -4,7 +4,7 @@
 static list companylist;
 
 void companylist_init(){
-	list_init(&companyList);
+	list_init(&companylist);
 }
 void companylist_add_new_company(char* name, char* description){
 	companylist_item *pitem = smart_malloc(sizeof(companylist_item));
@@ -18,13 +18,13 @@ list_node* companylist_begin(){
 }
 list_node* companylist_end)();
 list* companylist_get_gamelist(list_node* company_iter){
-	((companylist_item*)company_iter->m_pdata)->m_gamelist;
+	return ((companylist_item*)company_iter->m_pdata)->m_gamelist;
 }
 char* companylist_get_name(list_node* company_iter){
-	((companylist_item*)company_iter->m_pdata)->m_description;
+	return ((companylist_item*)company_iter->m_pdata)->m_description;
 }
 char* companylist_get_description(list_node* company_iter){
-	((companylist_item*)company_iter->m_pdata)->m_name;
+	return ((companylist_item*)company_iter->m_pdata)->m_name;
 }
 list_node* companylist_find(char* name){
 	list_node* iter = companylist_begin();
@@ -34,4 +34,12 @@ list_node* companylist_find(char* name){
 		}
 	}
 	return iter;
+}
+bool cmpr_name(void* a, void *b){
+	//void* = companylist_item*
+	return 0<strcmp(((companylist_item*)a)->m_name,
+	((companylist_item*)b)->m_name );
+}
+void companylist_sort_by_name(){
+	list_sort(&companylist,cmpr_name);
 }
