@@ -1,7 +1,9 @@
 #include "mergeSort.h"
+#include <stdio.h>
 static cmp_t cmp;
 void mergeSort(list_node *beg, list_node *end, int size, cmp_t compare){
 	cmp = compare;
+	printf("size%d\n",size);
 	mergeSortPart(beg, end, size);
 }
 void mergeSortPart(list_node *beg, list_node *end, int size){
@@ -19,7 +21,7 @@ void mergeSortPart(list_node *beg, list_node *end, int size){
 void merge(list_node* beg, list_node* mid, list_node* end){
 	list_node *iter1 = beg;
 	list_node *iter2 = mid;
-	while(iter1 != mid && iter2 != end){
+	while(iter1 != iter2 && iter2 != end){
 		if(cmp(iter2->m_pdata, iter1->m_pdata)){
 			list_node* tmp = iter2;
 			iter2 = iter2->m_next;

@@ -13,18 +13,24 @@ void der(void *p){
 }
 int main()
 {
+	
+	printf("\nhello, woxzzrld!\n");
 	list container;
 	list *plist = &container;
 	list_initialize(&container,der);
+	//printf("\nhe1533521llo, woxzzrld!\n");
+	
 	for(int i =0; i<0x100; ++i){
 		int *tmp =smart_malloc(sizeof(int));
-		*tmp = 31*i % 0x100;
+		*tmp = 3*i % 0x100;
 		list_push(&container,tmp);
 	}
+	//printf("\nhe1533521llo, woxzzrld!\n");
 	list_sort(&container, cmper);
-	for(list_node *iter = list_begin(plist)->m_next;
-	iter!=list_end(plist); iter = list_begin(plist)->m_next){
-		printf("\t%d",show(iter->m_pdata));
+	
+	for(list_node *iter = list_begin(plist);
+	iter!=list_end(plist); iter = iter->m_next){
+		printf("%d\t",show(iter->m_pdata));
 	}
 	printf("\nhello, world!\n");
 	return 0;
