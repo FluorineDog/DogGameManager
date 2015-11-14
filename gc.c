@@ -7,3 +7,6 @@ static struct {
 void* smart_malloc(size_t size){
 	return malloc(size);
 }
+void smart_free(void *ptr){
+	free(ptr);
+}

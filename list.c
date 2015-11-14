@@ -13,8 +13,8 @@ void list_insert(list *plist, list_node* pwhere, void* pdata){
 	new_item->m_pdata = pdata;
 	new_item->m_next = pwhere;
 	new_item->m_prev = pwhere->prev;
-	new_item->m_next->m_prev = new_item->m_prev;
-	new_item->m_prev->m_next = new_item->m_next;
+	new_item->m_next->m_prev = new_item;
+	new_item->m_prev->m_next = new_item;
 }
 
 void list_erase(list *plist, list_node* pwhere){
@@ -28,8 +28,14 @@ void list_move(list_node* pwhich, list_node* pwhere){
 	pwhich->m_next->m_prev = pwhich->m_prev;
 	pwhich->m_next = pwhere;
 	pwhich->m_prev = pwhere->prev;
-	pwhich->m_next->m_prev = pwhich->m_prev;
-	pwhich->m_prev->m_next = pwhich->m_next;
+	pwhich->m_next->m_prev = pwhich;
+	pwhich->m_prev->m_next = pwhich;
+}
+void list_clear_all(list *plist){
+	for(list_node *iter = list_begin(plist)->m_next;
+	iter!=list_end(plist); iter = list_begin(plist)->m_next){
+		list_erase(plist,iter);
+	}
 }
 //to sort in the standard of cmp with method of mergeSort
 void list_sort(list *plist, cmp_t cmp){

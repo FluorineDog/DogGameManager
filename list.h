@@ -25,6 +25,7 @@ void list_initialize(list *plist, destructor_t destructor);
 void list_insert(list *plist, list_node* pwhere, void* pdata);
 void list_erase(list *plist, list_node* pwhere);
 void list_move(list_node* pwhich, list_node* pwhere);
+void list_clear_all(list *plist);
 
 inline list_node* list_begin(list *plist){return plist->m_head.m_next;}
 inline list_node* list_end(list *plist){return &plist->m_tail;}
