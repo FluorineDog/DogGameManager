@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include "common.h"
 #include "list.h"
+void cmper(void *a, void *b){
+	return 
+}
 int main()
 {
-	bool a = true;
 	
 	printf("hello, world!");
 	return 0;

@@ -2,14 +2,15 @@
 //You must specify it before any use
 #ifndef DOG_LIST_H_
 #define DOG_LIST_H_
+#include "gc.h"
+#include "common.h"
+
 typedef struct list_node_ list_node;
 typedef struct list_ list;
 typedef void (*destructor_t)(void * data);
 typedef bool (*cmp_t)(void *pdata1, void *pdata2);
 typedef bool (*check_t)(void* pdata);
 
-#include "gc.h"
-#include "common.h"
 struct list_node_{
 	list_node *m_prev, *m_next;	
 	void *m_pdata;	//Block of data for universial usage
