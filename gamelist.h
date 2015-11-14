@@ -2,11 +2,14 @@
 #define DOG_GAMELIST_H_
 #include "commmon.h"
 typedef struct gamelist_item_ gamelist_item;
+const int max_achievement_size = 0x100;
 struct gamelist_item_{
-	struct {
-		int time2play;
-	}game_data;
-	list* company;
+	struct{
+		char name[0x20];
+		int  num;
+	}achievements[max_achievement_size];
+	int achievement_size;
+	int time2playInSeconds;
 };
 
-#endif //DOG_GAMELIST_H_
+#endif //DOG_GAMELIST_H

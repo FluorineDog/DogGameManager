@@ -2,7 +2,7 @@
 #include "gc.h"
 #include "string.h"
 static list companylist;
-
+// no comments, since all info is implicited in the variable names.
 void companylist_init(){
 	list_init(&companylist);
 }
@@ -34,9 +34,9 @@ list_node* companylist_find(char* name){
 		}
 	}
 	return iter;
-}
+} 
 bool cmpr_name(void* a, void *b){
-	//void* = companylist_item*
+	// void* equals to companylist_item* 
 	return 0<strcmp(((companylist_item*)a)->m_name,
 	((companylist_item*)b)->m_name );
 }
