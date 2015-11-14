@@ -3,7 +3,7 @@
 #ifndef DOG_LIST_H_
 #define DOG_LIST_H_
 #include "gc.h"
-
+#include "common.h"
 struct list_node_{
 	list_node *m_prev, *m_next;	
 	void *m_pdata;	//Block of data for universial usage
