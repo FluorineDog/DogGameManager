@@ -1,2 +1,2 @@
 # DogGameManager
-A worst manager for so-called Steam games.
+**A worst manager for so-called Steam games. **

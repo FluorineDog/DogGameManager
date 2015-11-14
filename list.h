@@ -1,5 +1,5 @@
-//This file provide a framework of common lists
-//You must specify it before any usage
+//This file provides a framework of common lists
+//You must specify it before any use
 #ifndef DOG_LIST_H_
 #define DOG_LIST_H_
 #include "gc.h"
@@ -18,11 +18,17 @@ struct list_{
 typedef struct list_ list;
 
 void list_initialize(list *plist, destructor_t destructor);
-void list_insert(list *plist, void* pdata);
+void list_insert(list *plist, list_node* pwhere, void* pdata);
 void list_erase(list *plist, list_node* pwhere);
+void list_move(list_node* pwhich, list_node* pwhere);
+
+void list_push(list *plist, void* pdata){
+	//always insert to the tail of list
+	list_insert(plist, list_end(plist), pdata);
+}
 
 typedef bool (*cmp_t)(void *pdata1, void *pdata2);
-//to sort in the standard of cmp
+//to sort in the standard of cmp with method of mergeSort
 void list_sort(list *plist, cmp_t cmp);
 
 typedef bool (*check_t)(void* pdata);
