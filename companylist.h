@@ -10,7 +10,7 @@ struct companylist_item_{
 };
 
 void companylist_init();
-void companylist_add_new_company(char* name, char* description);
+list_node* companylist_add_new_company(char* name, char* description);
 void companylist_sort_by_name();
 //void companylist_sort_by_volumn(); 
 //3 liter blood to death

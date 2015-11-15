@@ -29,7 +29,7 @@ void list_clear_all(list *plist);
 
 list_node* list_begin(list *plist);
 list_node* list_end(list *plist);
-void list_push(list *plist, void* pdata);
+list_node* list_push(list *plist, void* pdata);
 
 //to sort in the standard of cmp with method of mergeSort
 void list_sort(list *plist, cmp_t cmp);

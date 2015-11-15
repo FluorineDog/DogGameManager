@@ -11,12 +11,12 @@ void companylist_init(){
 	// to deal with direct insertion into allGameList
 	gamelist_init_no_company(companylist_get_gamelist(companylist_begin()));
 }
-void companylist_add_new_company(char* name, char* description){
+list_node* companylist_add_new_company(char* name, char* description){
 	companylist_item *pitem = smart_malloc(sizeof(companylist_item));
 	strcpy(name, pitem->m_name);
 	strcpy(description, pitem->m_description);
 	list_init(pitem->m_gamelist);
-	list_push(&companylist, pitem);
+	return list_push(&companylist, pitem);
 }
 list_node* companylist_begin(){
 	return list_begin(&companylist);

@@ -55,7 +55,7 @@ list_node* list_find(list *plist, check_t check){
 list_node* list_begin(list *plist)
 {return plist->m_head.m_next;}
 list_node* list_end(list *plist){return &plist->m_tail;}
-void list_push(list *plist, void* pdata){
+list_node* list_push(list *plist, void* pdata){
 	//always insert to the tail of list
-	list_insert(plist, list_end(plist), pdata);
+	return list_insert(plist, list_end(plist), pdata);
 }
