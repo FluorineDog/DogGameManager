@@ -22,7 +22,7 @@ struct list_{
 };
 
 void list_initialize(list *plist, destructor_t destructor);
-void list_insert(list *plist, list_node* pwhere, void* pdata);
+list_node* list_insert(list *plist, list_node* pwhere, void* pdata);
 void list_erase(list *plist, list_node* pwhere);
 void list_move(list_node* pwhich, list_node* pwhere);
 void list_clear_all(list *plist);

@@ -7,7 +7,7 @@ void list_initialize(list *plist, destructor_t destructor){
 	plist->m_destructor =  destructor;
 }
 
-void list_insert(list *plist, list_node* pwhere, void* pdata){
+list_node* list_insert(list *plist, list_node* pwhere, void* pdata){
 	++plist->m_size;
 	list_node *new_item = smart_malloc(sizeof(list_node));
 	new_item->m_pdata = pdata;
@@ -15,6 +15,7 @@ void list_insert(list *plist, list_node* pwhere, void* pdata){
 	new_item->m_prev = pwhere->m_prev;
 	new_item->m_next->m_prev = new_item;
 	new_item->m_prev->m_next = new_item;
+	return new_item;
 }
 
 void list_erase(list *plist, list_node* pwhere){

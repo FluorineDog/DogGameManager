@@ -1,6 +1,6 @@
 #include "gamelist.h"
 static list allGameList;
-static list
+static list* no_company_gamelist;
 static gamelist_cmp_t cmpr_core;
 void gamelist_init_all(){
 	//Called by company_init_all
@@ -14,8 +14,13 @@ void gamelist_init_all(){
 	list_init(allGameList);
 }
 
-void gamelist_add_game(list* plist, char* name, int time_played);
+void gamelist_add_game(list* plist, char* name, int time_played){
+	int company_gamelist;
+	if(plist==no_company_gamelist)
+			
+}
 void gamelist_find_game(list* plist, char *name);
+void gamelist_erase_game(list_node* pwhere);
 
 //sorting section
 void gamelist_sort(list* plist, gamelist_cmp_t cmp){
