@@ -5,7 +5,11 @@ static list companylist;
 // no comments, since all info is implicited in the variable names.
 void companylist_init(){
 	list_init(&companylist);
+	companylist_add_new_company("No Company", "games that \
+	add from the allGameList will go there");
 	gamelist_init_all();
+	// to deal with direct insertion into allGameList
+	gamelist_init_no_company(companylist_get_gamelist(companylist_begin()));
 }
 void companylist_add_new_company(char* name, char* description){
 	companylist_item *pitem = smart_malloc(sizeof(companylist_item));
@@ -15,9 +19,11 @@ void companylist_add_new_company(char* name, char* description){
 	list_push(&companylist, pitem);
 }
 list_node* companylist_begin(){
-	return list_begin(&companylist)
+	return list_begin(&companylist);
 }
-list_node* companylist_end)();
+list_node* companylist_end(){
+	return list_end(&companylist);
+}
 list* companylist_get_gamelist(list_node* company_iter){
 	return ((companylist_item*)company_iter->m_pdata)->m_gamelist;
 }
@@ -38,8 +44,8 @@ list_node* companylist_find(char* name){
 } 
 bool cmpr_name(void* a, void *b){
 	// void* equals to companylist_item* 
-	return 0<strcmp(((companylist_item*)a)->m_name,
-	((companylist_item*)b)->m_name );
+	return strcmp(((companylist_item*)a)->m_name,
+	((companylist_item*)b)->m_name )<0;
 }
 void companylist_sort_by_name(){
 	list_sort(&companylist,cmpr_name);
