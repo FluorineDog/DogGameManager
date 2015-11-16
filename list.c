@@ -1,6 +1,6 @@
 #include "list.h"
 #include "mergeSort.h"
-void list_initialize(list *plist, destructor_t destructor){
+void list_init(list *plist, destructor_t destructor){
 	plist->m_size = 0;
 	plist->m_head.m_next = &plist->m_tail;
 	plist->m_tail.m_prev = &plist->m_head;

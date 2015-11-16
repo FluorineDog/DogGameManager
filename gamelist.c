@@ -4,23 +4,44 @@ static list* no_company_gamelist;
 static gamelist_cmp_t cmpr_core;
 void gamelist_init_all(){
 	//Called by company_init_all
-	list_init(&allGameList);
+	list_init(&allGameList, smart_free);
 }
 
-list* gamelist_get_all(){
+list* gamelist_get_all_list(){
 	return &allGameList;
 }
-void gamelist_init_all(){
-	list_init(allGameList);
+
+
+void gamelist_init_no_company(list *gamelist){
+	no_company_gamelist = gamelist;
+}
+void gamelist_add_game(list* gamelist, char* name, int time_played){
+	if(gamelist == &allGameList)
+		gamelist = company_get_gamelist(no_company);
+	gamelist_item* new_item = smart_malloc(sizeof(gamelist_item));
+	strcpy(name,new_item->m_name);
+	new_item->m_achievement_size = 0;
+	new_item->m_time_played = time_played;
+	new_item->m_company_gamelist = gamelist;
+	new_item->m_position_in_allGameList = list_push(&allGameList, new_item);
+	new_item->m_position_in_companylist = list_push(&gamelist, new_item);
+}
+void gamelist_find_game(list* gamelist, char *name){
+	list_node* iter = list_begin(gamelist);
+	for(;iter != list_end(gamelist);iter = iter->m_next){
+		if(!strcmp(name, gamelist_get_name(iter))){
+			break;
+		}
+	}
+	return iter;
+}
+void gamelist_erase_game(list_node* pwhere){
+	
 }
 
-void gamelist_add_game(list* plist, char* name, int time_played){
-	int company_gamelist;
-	if(plist==no_company_gamelist)
-			
+char* gamelist_get_name(list_node* game_iter){
+	return ((gamelist_item*)game_iter->m_pdata)->m_name;
 }
-void gamelist_find_game(list* plist, char *name);
-void gamelist_erase_game(list_node* pwhere);
 
 //sorting section
 void gamelist_sort(list* plist, gamelist_cmp_t cmp){
@@ -39,7 +60,7 @@ bool cmp_time_played(gamelist_item *a, gamelist_item *b){
 }
 
 
-//Attention! Need initialization each time. 
+//Attention! ed initialization each time. 
 void init_cmp_wrapper(gamelist_cmp_t cmp){
 	cmpr_core = cmp;
 }

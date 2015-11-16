@@ -1,6 +1,7 @@
 #ifndef DOG_COMPANYLIST_H_
 #define DOG_COMPANYLIST_H_
 #include "list.h"
+#include "gc.h"
 #include "gamelist.h"
 typedef struct companylist_item_ companylist_item;
 struct companylist_item_{

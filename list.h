@@ -21,7 +21,7 @@ struct list_{
 	destructor_t m_destructor;//for m_pdata
 };
 
-void list_initialize(list *plist, destructor_t destructor);
+void list_init(list *plist, destructor_t destructor);
 list_node* list_insert(list *plist, list_node* pwhere, void* pdata);
 void list_erase(list *plist, list_node* pwhere);
 void list_move(list_node* pwhich, list_node* pwhere);

@@ -16,7 +16,7 @@ int main()
 	
 	list container;
 	list *plist = &container;
-	list_initialize(plist,der);
+	list_init(plist,der);
 	
 	for(int i =0; i<10000000; ++i){
 		int *tmp =smart_malloc(sizeof(int));

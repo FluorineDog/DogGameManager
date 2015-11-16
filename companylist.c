@@ -4,7 +4,7 @@
 static list companylist;
 // no comments, since all info is implicited in the variable names.
 void companylist_init(){
-	list_init(&companylist);
+	list_init(&companylist, smart_free);
 	companylist_add_new_company("No Company", "games that \
 	add from the allGameList will go there");
 	gamelist_init_all();
@@ -15,7 +15,7 @@ list_node* companylist_add_new_company(char* name, char* description){
 	companylist_item *pitem = smart_malloc(sizeof(companylist_item));
 	strcpy(name, pitem->m_name);
 	strcpy(description, pitem->m_description);
-	list_init(pitem->m_gamelist);
+	list_init(pitem->m_gamelist, do_nothing);
 	return list_push(&companylist, pitem);
 }
 list_node* companylist_begin(){
