@@ -11,30 +11,30 @@ void companylist_init(){
 	// to deal with direct insertion into allGameList
 	gamelist_init_no_company(companylist_get_gamelist(companylist_begin()));
 }
-list_node* companylist_add_new_company(char* name, char* description){
+iter_t companylist_add_new_company(char* name, char* description){
 	companylist_item *pitem = smart_malloc(sizeof(companylist_item));
 	strcpy(name, pitem->m_name);
 	strcpy(description, pitem->m_description);
 	list_init(&pitem->m_gamelist, do_nothing);
 	return list_push(&companylist, pitem);
 }
-list_node* companylist_begin(){
+iter_t companylist_begin(){
 	return list_begin(&companylist);
 }
-list_node* companylist_end(){
+iter_t companylist_end(){
 	return list_end(&companylist);
 }
-list* companylist_get_gamelist(list_node* company_iter){
+list* companylist_get_gamelist(iter_t company_iter){
 	return &((companylist_item*)company_iter->m_pdata)->m_gamelist;
 }
-char* companylist_get_name(list_node* company_iter){
+char* companylist_get_name(iter_t company_iter){
 	return ((companylist_item*)company_iter->m_pdata)->m_description;
 }
-char* companylist_get_description(list_node* company_iter){
+char* companylist_get_description(iter_t company_iter){
 	return ((companylist_item*)company_iter->m_pdata)->m_name;
 }
-list_node* companylist_find(char* name){
-	list_node* iter = companylist_begin();
+iter_t companylist_find(char* name){
+	iter_t iter = companylist_begin();
 	for(;iter != companylist_end();iter = iter->m_next){
 		if(!strcmp(name, companylist_get_name(iter))){
 			break;

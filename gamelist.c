@@ -26,8 +26,8 @@ void gamelist_add_game(list* gamelist, char* name, int time_played){
 	new_item->m_position_in_allGameList = list_push(&allGameList, new_item);
 	new_item->m_position_in_companylist = list_push(gamelist, new_item);
 }
-list_node* gamelist_find_game(list* gamelist, char *name){
-	list_node* iter = list_begin(gamelist);
+iter_t gamelist_find_game(list* gamelist, char *name){
+	iter_t iter = list_begin(gamelist);
 	for(;iter != list_end(gamelist);iter = iter->m_next){
 		if(!strcmp(name, gamelist_get_name(iter))){
 			break;
@@ -35,13 +35,13 @@ list_node* gamelist_find_game(list* gamelist, char *name){
 	}
 	return iter;
 }
-void gamelist_erase_game(list_node* pwhere){
+void gamelist_erase_game(iter_t pwhere){
 	gamelist_item *trash = (gamelist_item*) pwhere->m_pdata;
 	list_erase(trash->m_company_gamelist, trash->m_position_in_companylist);
 	list_erase(&allGameList, trash->m_position_in_allGameList);
 }
 
-char* gamelist_get_name(list_node* game_iter){
+char* gamelist_get_name(iter_t game_iter){
 	return ((gamelist_item*)game_iter->m_pdata)->m_name;
 }
 

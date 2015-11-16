@@ -15,20 +15,15 @@ void der(void *p){
 }
 int main()
 {
-	
-	list container;
-	list *plist = &container;
-	list_init(plist,der);
-	
-	for(int i =0; i<10000000; ++i){
-		int *tmp =smart_malloc(sizeof(int));
-		*tmp = rand()*65536+rand();
-		list_push(&container,tmp);
-	}
-	printf("begins\n");
-	list_sort(plist, cmper);
-	printf("ends\n");
-	int i=(unsigned int)-1 /2;
-	list_clear_all(plist);
+	companylist_add_new_company("EA", "a game Empire.");
+	companylist_add_new_company("Disney", "most successful canton game provider");
+	companylist_add_new_company("XDisney", "most successful fake canton game provider");
+	companylist_sort_by_name();
+	list* gamelist = companylist_get_gamelist(companylist_begin());
+	gamelist_add_game(gamelist,"fishing",55);
+	gamelist_add_game(gamelist,"balling",13);
+	gamelist_add_game(gamelist,"zoo",31);
+	gamelist_sort(gamelist,cmp_name);
+	for()
 	return 0;
 }

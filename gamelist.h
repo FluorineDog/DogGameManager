@@ -15,18 +15,18 @@ struct gamelist_item_{
 	int m_achievement_size;
 	int m_time_played;
 	list* m_company_gamelist;
-	list_node* m_position_in_allGameList;
-	list_node* m_position_in_companylist;//for fast deletion
+	iter_t m_position_in_allGameList;
+	iter_t m_position_in_companylist;//for fast deletion
 };
 list* gamelist_get_all_list();
 void gamelist_init_all();
 void gamelist_init_no_company(list *gamelist);
 void gamelist_add_game(list* plist, char* name, int time_played);
-list_node* gamelist_find_game(list* plist, char *name);
-void gamelist_erase_game(list_node* pwhere);
+iter_t gamelist_find_game(list* plist, char *name);
+void gamelist_erase_game(iter_t pwhere);
 
-char* gamelist_get_name(list_node* pwhere);
-int gamelist_get_ptr(list_node* pwhere);
+char* gamelist_get_name(iter_t pwhere);
+int gamelist_get_ptr(iter_t pwhere);
 
 
 void gamelist_sort(list* plist, gamelist_cmp_t cmp);

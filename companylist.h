@@ -11,15 +11,15 @@ struct companylist_item_{
 };
 
 void companylist_init(void);
-list_node* companylist_add_new_company(char* name, char* description);
+iter_t companylist_add_new_company(char* name, char* description);
 void companylist_sort_by_name();
 //void companylist_sort_by_volumn(); 
 //3 liter blood to death
 
-list_node* companylist_find(char* name);
-list* companylist_get_gamelist(list_node* company_iter);
-char* companylist_get_name(list_node* company_iter);
-char* companylist_get_description(list_node* company_iter);
-list_node* companylist_begin();
-list_node* companylist_end();
+iter_t companylist_find(char* name);
+list* companylist_get_gamelist(iter_t company_iter);
+char* companylist_get_name(iter_t company_iter);
+char* companylist_get_description(iter_t company_iter);
+iter_t companylist_begin();
+iter_t companylist_end();
 #endif //DOG_COMPANYLIST_H_

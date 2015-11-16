@@ -10,9 +10,9 @@ typedef struct list_ list;
 typedef void (*destructor_t)(void * data);
 typedef bool (*cmp_t)(void *pdata1, void *pdata2);
 typedef bool (*check_t)(void* pdata);
-
+typedef list_node* iter_t;
 struct list_node_{
-	list_node *m_prev, *m_next;	
+	iter_t m_prev, m_next;	
 	void *m_pdata;	//Block of data for universial usage
 }; 
 struct list_{
@@ -22,20 +22,20 @@ struct list_{
 };
 
 void list_init(list *plist, destructor_t destructor);
-list_node* list_insert(list *plist, list_node* pwhere, void* pdata);
-void list_erase(list *plist, list_node* pwhere);
-void list_move(list_node* pwhich, list_node* pwhere);
+iter_t list_insert(list *plist, iter_t pwhere, void* pdata);
+void list_erase(list *plist, iter_t pwhere);
+void list_move(iter_t pwhich, iter_t pwhere);
 void list_clear_all(list *plist);
 
-list_node* list_begin(list *plist);
-list_node* list_end(list *plist);
-list_node* list_push(list *plist, void* pdata);
+iter_t list_begin(list *plist);
+iter_t list_end(list *plist);
+iter_t list_push(list *plist, void* pdata);
 
 //to sort in the standard of cmp with method of mergeSort
 void list_sort(list *plist, cmp_t cmp);
 
 //to find the first matched item
-list_node* list_find(list *plist, check_t check);
+iter_t list_find(list *plist, check_t check);
 
 
 #endif //DOG_LIST_H_
