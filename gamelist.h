@@ -1,9 +1,9 @@
 #ifndef DOG_GAMELIST_H_
 #define DOG_GAMELIST_H_
-#include "commmon.h"
+#include "common.h"
 #include "list.h"
 #include "gc.h"
-#include "companylist.h"
+#include "string.h"
 typedef struct gamelist_item_ gamelist_item;
 typedef bool (*gamelist_cmp_t)(gamelist_item* ptr1, gamelist_item* ptr2);
 struct gamelist_item_{
@@ -22,7 +22,7 @@ list* gamelist_get_all_list();
 void gamelist_init_all();
 void gamelist_init_no_company(list *gamelist);
 void gamelist_add_game(list* plist, char* name, int time_played);
-void gamelist_find_game(list* plist, char *name);
+list_node* gamelist_find_game(list* plist, char *name);
 void gamelist_erase_game(list_node* pwhere);
 
 char* gamelist_get_name(list_node* pwhere);

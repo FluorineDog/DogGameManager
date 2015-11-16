@@ -17,16 +17,16 @@ void gamelist_init_no_company(list *gamelist){
 }
 void gamelist_add_game(list* gamelist, char* name, int time_played){
 	if(gamelist == &allGameList)
-		gamelist = company_get_gamelist(no_company);
+		gamelist = no_company_gamelist;
 	gamelist_item* new_item = smart_malloc(sizeof(gamelist_item));
 	strcpy(name,new_item->m_name);
 	new_item->m_achievement_size = 0;
 	new_item->m_time_played = time_played;
 	new_item->m_company_gamelist = gamelist;
 	new_item->m_position_in_allGameList = list_push(&allGameList, new_item);
-	new_item->m_position_in_companylist = list_push(&gamelist, new_item);
+	new_item->m_position_in_companylist = list_push(gamelist, new_item);
 }
-void gamelist_find_game(list* gamelist, char *name){
+list_node* gamelist_find_game(list* gamelist, char *name){
 	list_node* iter = list_begin(gamelist);
 	for(;iter != list_end(gamelist);iter = iter->m_next){
 		if(!strcmp(name, gamelist_get_name(iter))){
@@ -36,7 +36,9 @@ void gamelist_find_game(list* gamelist, char *name){
 	return iter;
 }
 void gamelist_erase_game(list_node* pwhere){
-	
+	gamelist_item *trash = (gamelist_item*) pwhere->m_pdata;
+	list_erase(trash->m_company_gamelist, trash->m_position_in_companylist);
+	list_erase(&allGameList, trash->m_position_in_allGameList);
 }
 
 char* gamelist_get_name(list_node* game_iter){

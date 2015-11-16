@@ -2,6 +2,8 @@
 #include "common.h"
 #include "list.h"
 #include "gc.h"
+#include "gamelist.h"
+#include "companylist.h"
 int show(void *p){
 	return *(int*)p;
 }
