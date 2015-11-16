@@ -26,7 +26,7 @@ iter_t gamelist_find_game(list* plist, char *name);
 void gamelist_erase_game(iter_t pwhere);
 
 char* gamelist_get_name(iter_t pwhere);
-int gamelist_get_ptr(iter_t pwhere);
+//TO DO
 
 
 void gamelist_sort(list* plist, gamelist_cmp_t cmp);

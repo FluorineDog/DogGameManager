@@ -15,6 +15,7 @@ void der(void *p){
 }
 int main()
 {
+	companylist_init();
 	companylist_add_new_company("EA", "a game Empire.");
 	companylist_add_new_company("Disney", "most successful canton game provider");
 	companylist_add_new_company("XDisney", "most successful fake canton game provider");
