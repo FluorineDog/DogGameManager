@@ -29,13 +29,6 @@ int main()
 	list_sort(plist, cmper);
 	printf("ends\n");
 	int i=(unsigned int)-1 /2;
-	// for(list_node *iter = list_begin(plist);
-	// iter!=list_end(plist); iter = iter->m_next){
-	// 	if(i>show(iter->m_pdata))
-	// 		abort();
-	// 	i = show(iter->m_pdata);
-	//  	//printf("%d\t",show(iter->m_pdata));
-	//  }
 	list_clear_all(plist);
 	return 0;
 }

@@ -14,4 +14,4 @@ void smart_free(void *ptr){
 	free(ptr);
 }
 
-void do_nothing(void *ptr){}
+void do_nothing(void* ptr){}

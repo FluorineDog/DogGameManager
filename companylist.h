@@ -10,7 +10,7 @@ struct companylist_item_{
 	char m_name[MAXSIZE_NAME];
 };
 
-void companylist_init();
+void companylist_init(void);
 list_node* companylist_add_new_company(char* name, char* description);
 void companylist_sort_by_name();
 //void companylist_sort_by_volumn(); 
